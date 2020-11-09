@@ -9,92 +9,100 @@ their requirements. Include the necessary methods in order to achieve the follow
 Accept deposit from customer and update the balance. • Display the balance. • Compute and
 deposit interest • Permit withdrawal and update the balance • Check for the minimum balance,
 impose penalty if necessary and update the balance*/     
-// taken mimbal=1000Rs,pentalty=100Rs 
+// taken mimbal=5000Rs,pentalty=100Rs 
 import java.util.*;
 import java.util.Scanner;
 class Account
 {
-	String cuname;
-	int accnum;
-	Double deposite,balance=500.00;
-	Scanner xx=new Scanner(System.in);
-	void Accept()
-	{   System.out.println("Enter customer name and account number ");
-	    cuname =xx.nextLine();
-		accnum=xx.nextInt();
-		System.out.println("Enter the money to be deposited");
-		deposite=xx.nextDouble();
-		balance=deposite+balance;
-	}
-	void Display()
-	{
-		System.out.println("CUSTOMER NAME = "+ cuname);
-		System.out.println("ACCOUNT NUMBER = "+ accnum);
-		System.out.println("Balance ="+balance);
-	}
-	
-}
-class CurrAcc extends Account
+Scanner in=new Scanner(System.in);
+String customer_name,type_of_account;
+long account_number;
+double balance=5000;
+void Accept()
 {
-	void check()
-	{
-		if(balance<1000)
-		{
-			System.out.println("The account do not have the minimun balance so 100Rs penalty is taken");
-		    balance=balance-100;
-			System.out.println("The balance amount = " + balance);
-		}
-	}
+	System.out.println("Enter customer name");
+	customer_name=in.next();
+	System.out.println("Enter Account number");
+	account_number=in.nextLong();
 }
-class SavAcc extends Account
+void deposit()
 {
-	
-	void comInt()
+	int dep;
+	System.out.println("Enter the amount to be be deposited");
+	dep=in.nextInt();
+	balance+=dep;
+	System.out.println("Balance="+balance);
+}
+void withdrawal()
+{
+	int witdra;
+	System.out.println("Enter the amount to be withdrawn");
+	witdra=in.nextInt();
+	balance-=witdra;
+	System.out.println("Balance="+balance);
+}
+}
+class CurrAct extends Account
+{
+void penalty()
+{
+	if(balance<2000)
 	{
-		Double Cint;
-		System.out.println("5% of interset is given ");
-		Cint = (0.5*balance);
-		balance=Cint+balance;
-		System.out.println("Balance= "+balance);
-	}
-	void withdrawal()
-	{   Double witam;
-		System.out.println("Enter the amount which needs to be withdrawal");
-	    witam=xx.nextDouble();
-        balance=balance - witam;
-		System.out.println("The balance amount = "+balance);
+	balance-=100;
+	System.out.println("Penalty for maintaining less balance");
+	System.out.println("Balance="+balance);
 	}
 }
-
-class bank
+}
+class SavAct extends Account
 {
-	public static void main(String[] args)
-	{   int a;
-	    int b;
-	    Scanner xx=new Scanner(System.in);
-		CurrAcc c1  = new CurrAcc();
-		SavAcc s1 = new SavAcc();
-        System.out.println("1.Current Account \n2.Saving Account");
-        a=xx.nextInt();
-        if(a==1)
-		{	A
-            System.out.println("This account provides cheque book facility but not interest");	
-            c1.Accept();
-            c1.Display();
-            c1.check();
-		}			
-        else
-		{
-			System.out.println("This account provides compound interest and withdrawal facilities but no cheque book facility");
-		    s1.Accept();
-            s1.Display();
-            s1.comInt();
-			System.out.println("Do you want to withdraw \n1.Withdrawal \n2.balance");
-		    b=xx.nextInt();
-			if(b==1)
-            s1.withdrawal();
-            else
-            s1.Display();	
-		}		
+void intrest()
+{
+	double i;
+	i=balance*0.02;
+	balance+=i;
+	System.out.println("Intrest="+i);
+	System.out.println("Total Balance="+balance);
+}
+}
+class Bank
+{
+public static void main (String args[])
+{
+Scanner in=new Scanner(System.in);
+CurrAct c=new CurrAct();
+SavAct s=new SavAct();
+System.out.println("Enter your choice\n1.Saving account\n2.current account");
+int choice=in.nextInt();
+if(choice==1)
+{
+	s.Accept();
+	System.out.println("Enter your choice\n1. Deposite\n2. Withdraw");
+	int n=in.nextInt();
+	switch (n)
+	{
+		case 1:s.deposit();
+               s.intrest();
+               break;
+        case 2:s.withdrawal();
+               break;
+		default :System.out.println("entered wrong option");
 	}
+}
+if(choice==2)
+{
+	c.Accept();
+	System.out.println("Enter your choice\n1. Deposite\n2.Withdrawl");
+	int n=in.nextInt();
+	switch(n)
+	{
+	case 1:c.deposit();
+           break;
+	case 2:c.withdrawal();
+		   c.penalty();
+		   break;
+	default :System.out.println("entered wrong option");
+	}
+}
+}
 }
