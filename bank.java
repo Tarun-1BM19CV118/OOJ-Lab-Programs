@@ -14,22 +14,22 @@ import java.util.*;
 import java.util.Scanner;
 class Account
 {
-Scanner in=new Scanner(System.in);
+Scanner xx=new Scanner(System.in);
 String customer_name,type_of_account;
 long account_number;
 double balance=5000;
 void Accept()
 {
 	System.out.println("Enter customer name");
-	customer_name=in.next();
+	customer_name=xx.next();
 	System.out.println("Enter Account number");
-	account_number=in.nextLong();
+	account_number=xx.nextLong();
 }
 void deposit()
 {
 	int dep;
 	System.out.println("Enter the amount to be be deposited");
-	dep=in.nextInt();
+	dep=xx.nextInt();
 	balance+=dep;
 	System.out.println("Balance="+balance);
 }
@@ -37,7 +37,7 @@ void withdrawal()
 {
 	int witdra;
 	System.out.println("Enter the amount to be withdrawn");
-	witdra=in.nextInt();
+	witdra=xx.nextInt();
 	balance-=witdra;
 	System.out.println("Balance="+balance);
 }
@@ -69,16 +69,16 @@ class Bank
 {
 public static void main (String args[])
 {
-Scanner in=new Scanner(System.in);
+Scanner xx=new Scanner(System.in);
 CurrAct c=new CurrAct();
 SavAct s=new SavAct();
 System.out.println("Enter your choice\n1.Saving account\n2.current account");
-int choice=in.nextInt();
+int choice=xx.nextInt();
 if(choice==1)
 {
 	s.Accept();
 	System.out.println("Enter your choice\n1. Deposite\n2. Withdraw");
-	int n=in.nextInt();
+	int n=xx.nextInt();
 	switch (n)
 	{
 		case 1:s.deposit();
@@ -93,7 +93,7 @@ if(choice==2)
 {
 	c.Accept();
 	System.out.println("Enter your choice\n1. Deposite\n2.Withdrawl");
-	int n=in.nextInt();
+	int n=xx.nextInt();
 	switch(n)
 	{
 	case 1:c.deposit();
