@@ -16,8 +16,9 @@ class NewThread implements Runnable
 	   {
 		   for(int n=1;n>0;n++)
 		   {
-			 System.out.println("BMS College of Engineering");
-			 Thread.sleep(10000);
+			   	System.out.println("CSE");
+				Thread.sleep(2000);
+			
 		   }
 	   }
 	   catch(InterruptedException ie)
@@ -36,8 +37,8 @@ class Thread2
 		{
 			for(int n=1;n>0;n++)
 			{
-				System.out.println("CSE");
-				Thread.sleep(2000);
+             System.out.println("BMS College of Engineering");
+			 Thread.sleep(10000);
 			}
 		}
 		catch(InterruptedException ie)
